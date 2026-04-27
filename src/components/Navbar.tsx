@@ -32,46 +32,25 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed top-0 inset-x-0 z-50 transition-all duration-500",
+        "fixed top-0 inset-x-0 z-50 transition-colors duration-300",
         scrolled
-          ? "bg-cream/85 backdrop-blur-xl shadow-elegant border-b border-gold/20"
-          : "bg-transparent",
+          ? "bg-background/92 backdrop-blur-md border-b border-divider"
+          : "bg-background/40 backdrop-blur-sm",
       )}
     >
-      <div className="max-w-[1280px] mx-auto px-5 lg:px-8 h-20 flex items-center justify-between">
-        <Link to="/" className="flex items-baseline gap-2 group">
-          <span
-            className={cn(
-              "font-display text-3xl font-bold tracking-tight transition-colors",
-              scrolled ? "text-maroon" : "text-gold",
-            )}
-          >
-            Dhimahi
-          </span>
-          <span
-            className={cn(
-              "font-body text-[11px] uppercase tracking-[0.25em] transition-colors hidden sm:inline",
-              scrolled ? "text-gold-dark" : "text-gold-light",
-            )}
-          >
-            Banquet Hall
-          </span>
+      <div className="max-w-[1280px] mx-auto px-6 lg:px-10 h-[72px] flex items-center justify-between">
+        <Link to="/" className="font-display text-2xl text-gold tracking-wide leading-none">
+          Dhimahi
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-1">
+        <nav className="hidden lg:flex items-center gap-10">
           {NAV.map((item) => (
             <Link
               key={item.to}
               to={item.to}
               activeOptions={{ exact: item.to === "/" }}
-              className={cn(
-                "px-4 py-2 text-sm font-medium tracking-wide transition-all relative",
-                scrolled ? "text-foreground/80" : "text-cream/90",
-                "hover:text-gold",
-              )}
-              activeProps={{
-                className: "text-gold font-semibold",
-              }}
+              className="text-[11px] uppercase tracking-[0.22em] font-medium text-text-secondary hover:text-gold transition-colors"
+              activeProps={{ className: "text-gold" }}
             >
               {item.label}
             </Link>
@@ -81,17 +60,15 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           <a
             href="tel:+919876543210"
-            className="hidden sm:inline-flex items-center gap-2 bg-gradient-gold text-maroon-deep px-5 py-2.5 rounded-full font-semibold text-sm shadow-gold hover:shadow-gold-lg transition-all hover:-translate-y-0.5 gold-shimmer"
+            className="hidden sm:inline-flex items-center gap-2 bg-gold text-[color:var(--background)] px-5 py-2.5 text-[11px] uppercase tracking-[0.2em] font-semibold hover:opacity-85 transition-opacity"
           >
-            <Phone className="w-4 h-4" />
-            Call Now
+            <Phone className="w-3.5 h-3.5" strokeWidth={2.2} />
+            <span className="hidden md:inline">Call +91 98765 43210</span>
+            <span className="md:hidden">Call Now</span>
           </a>
           <button
             onClick={() => setOpen(true)}
-            className={cn(
-              "lg:hidden p-2 rounded-full transition-colors",
-              scrolled ? "text-maroon" : "text-cream",
-            )}
+            className="lg:hidden p-2 text-text-primary"
             aria-label="Open menu"
           >
             <Menu className="w-6 h-6" />
@@ -102,27 +79,26 @@ export function Navbar() {
       {/* Mobile drawer */}
       <div
         className={cn(
-          "fixed inset-0 z-50 lg:hidden transition-all duration-500",
+          "fixed inset-0 z-50 lg:hidden transition-opacity duration-300",
           open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none",
         )}
       >
-        <div className="absolute inset-0 bg-maroon-deep mandala-pattern" />
+        <div className="absolute inset-0 bg-background" />
         <div className="relative h-full flex flex-col p-8">
-          <div className="flex items-center justify-between mb-12">
-            <span className="font-display text-3xl text-gold">Dhimahi</span>
-            <button onClick={() => setOpen(false)} aria-label="Close menu" className="text-cream p-2">
-              <X className="w-7 h-7" />
+          <div className="flex items-center justify-between mb-16">
+            <span className="font-display text-2xl text-gold">Dhimahi</span>
+            <button onClick={() => setOpen(false)} aria-label="Close menu" className="text-text-primary p-2">
+              <X className="w-6 h-6" />
             </button>
           </div>
-          <nav className="flex flex-col gap-2">
-            {NAV.map((item, i) => (
+          <nav className="flex flex-col gap-6">
+            {NAV.map((item) => (
               <Link
                 key={item.to}
                 to={item.to}
                 activeOptions={{ exact: item.to === "/" }}
-                className="font-display text-3xl text-cream/90 py-3 border-b border-gold/15 hover:text-gold transition-colors"
+                className="font-display text-3xl text-text-primary border-b border-divider pb-4 hover:text-gold transition-colors"
                 activeProps={{ className: "text-gold" }}
-                style={{ animationDelay: `${i * 60}ms` }}
               >
                 {item.label}
               </Link>
@@ -130,9 +106,9 @@ export function Navbar() {
           </nav>
           <a
             href="tel:+919876543210"
-            className="mt-auto inline-flex items-center justify-center gap-2 bg-gradient-gold text-maroon-deep px-6 py-4 rounded-full font-semibold shadow-gold-lg"
+            className="mt-auto inline-flex items-center justify-center gap-2 bg-gold text-[color:var(--background)] px-6 py-4 text-xs uppercase tracking-[0.22em] font-semibold"
           >
-            <Phone className="w-5 h-5" /> Call +91 98765 43210
+            <Phone className="w-4 h-4" /> Call +91 98765 43210
           </a>
         </div>
       </div>

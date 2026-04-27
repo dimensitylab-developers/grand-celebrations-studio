@@ -1,20 +1,27 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Check } from "lucide-react";
-import { GoldDivider } from "@/components/GoldDivider";
 import g1 from "@/assets/gallery-1.jpg";
 import g2 from "@/assets/gallery-2.jpg";
 import g3 from "@/assets/gallery-3.jpg";
 import g4 from "@/assets/gallery-4.jpg";
 import g5 from "@/assets/gallery-5.jpg";
 import g6 from "@/assets/gallery-6.jpg";
+import { Reveal } from "@/components/Reveal";
+import { SectionLabel } from "@/components/SectionLabel";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services — Weddings, Engagements, Catering & Decor" },
-      { name: "description", content: "Wedding functions, engagement ceremonies, birthdays, corporate events, in-house catering and decoration at Dhimahi Banquet Hall." },
+      { title: "Services — Weddings, Catering & Decor · Dhimahi" },
+      {
+        name: "description",
+        content:
+          "Weddings, engagements, mehendi, corporate events, in-house catering and decoration at Dhimahi Banquet Hall, Virar West.",
+      },
       { property: "og:title", content: "Services — Dhimahi Banquet Hall" },
-      { property: "og:description", content: "Full-service venue for weddings, engagements, corporate events and more." },
+      {
+        property: "og:description",
+        content: "End-to-end service for weddings, engagements and corporate events.",
+      },
       { property: "og:image", content: g1 },
     ],
   }),
@@ -24,95 +31,102 @@ export const Route = createFileRoute("/services")({
 const SERVICES = [
   {
     img: g1,
+    num: "01",
     title: "Wedding Functions",
     price: "From ₹1,50,000",
-    features: ["Hall + mandap setup", "Bridal room with hair & makeup space", "DJ + sound system", "Up to 500 guests", "Dedicated coordinator"],
+    features: ["Hall and mandap setup", "Bridal room with hair and makeup space", "DJ and sound system", "Up to 500 guests"],
   },
   {
     img: g4,
+    num: "02",
     title: "Engagement Ceremonies",
     price: "From ₹75,000",
-    features: ["Stage decor with florals", "Lounge seating arrangement", "Photographer-ready lighting", "Welcome drinks", "Ring exchange setup"],
+    features: ["Stage decor with florals", "Lounge seating arrangement", "Photographer-ready lighting", "Welcome drinks service"],
   },
   {
     img: g5,
-    title: "Birthday Parties",
-    price: "From ₹40,000",
-    features: ["Themed decoration", "Custom cake setup", "Kids entertainment area", "Multi-cuisine menu", "Photo booth"],
+    num: "03",
+    title: "Mehendi & Sangeet",
+    price: "From ₹50,000",
+    features: ["Outdoor or indoor setup", "Themed lounge decor", "DJ and dance floor", "Catered menus included"],
   },
   {
     img: g6,
+    num: "04",
     title: "Corporate Events",
     price: "From ₹60,000",
-    features: ["Theatre / banquet seating", "Projector + AV system", "High-speed Wi-Fi", "Working lunch menus", "Branded backdrops"],
+    features: ["Theatre or banquet seating", "Projector and AV system", "High-speed Wi-Fi", "Working lunch menus"],
   },
   {
     img: g3,
+    num: "05",
     title: "In-house Catering",
-    price: "From ₹450 / plate",
-    features: ["Pure veg & non-veg menus", "Live counters", "North & South Indian cuisines", "Jain & Swaminarayan options", "Dessert stations"],
+    price: "From ₹450 per plate",
+    features: ["Pure veg and non-veg menus", "Jain and Swaminarayan options", "North and South Indian cuisines", "Live counters and dessert stations"],
   },
   {
     img: g2,
+    num: "06",
     title: "Decoration",
     price: "From ₹30,000",
-    features: ["Floral mandap design", "Stage backdrops", "Entrance archways", "Ceiling installations", "Theme-based concepts"],
+    features: ["Floral mandap design", "Stage backdrops and entrance arches", "Ceiling installations", "Theme-based concepts"],
   },
 ];
 
 function ServicesPage() {
   return (
-    <div className="pt-28 pb-10">
-      <div className="text-center px-5 mb-14">
-        <p className="font-decorative italic text-gold uppercase tracking-[0.3em] text-sm">What we do</p>
-        <h1 className="font-display text-5xl md:text-6xl text-maroon mt-3">Our Services</h1>
-        <GoldDivider className="mt-5" />
-        <p className="mt-4 text-foreground/70 max-w-xl mx-auto">
-          From intimate ring ceremonies to 500-guest weddings — handled end to end.
-        </p>
-      </div>
+    <div className="pt-32 pb-28 px-6 lg:px-10">
+      <div className="max-w-[1280px] mx-auto">
+        <Reveal className="max-w-2xl mb-16">
+          <SectionLabel>What we do</SectionLabel>
+          <h1 className="font-display text-5xl md:text-7xl text-text-primary mt-6 leading-[1.05]">
+            From mehendi to <span className="italic text-gold">vidaai.</span>
+          </h1>
+          <p className="mt-6 text-text-secondary leading-relaxed">
+            Six services, one team. Book individually or as part of a package — pricing
+            stays transparent either way.
+          </p>
+        </Reveal>
 
-      <div className="max-w-[1280px] mx-auto px-5 lg:px-8 space-y-16 lg:space-y-24">
-        {SERVICES.map((s, i) => (
-          <div key={i}>
-            <div className={`grid lg:grid-cols-2 gap-10 lg:gap-16 items-center ${i % 2 === 1 ? "lg:[direction:rtl]" : ""}`}>
-              <div className="[direction:ltr]">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-divider border border-divider">
+          {SERVICES.map((s, i) => (
+            <Reveal
+              key={s.num}
+              delay={i * 60}
+              className="bg-surface flex flex-col"
+            >
+              <div className="relative aspect-[4/3] overflow-hidden">
                 <img
                   src={s.img}
                   alt={s.title}
                   loading="lazy"
-                  className="w-full aspect-[4/3] object-cover rounded-3xl shadow-warm border-4 border-gold/20"
+                  className="w-full h-full object-cover"
                 />
+                <div className="absolute top-4 left-4 text-[11px] tracking-[0.3em] text-gold bg-background/70 px-2.5 py-1">
+                  {s.num}
+                </div>
               </div>
-              <div className="[direction:ltr]">
-                <p className="font-decorative italic text-gold uppercase tracking-[0.3em] text-xs">Service {String(i + 1).padStart(2, "0")}</p>
-                <h2 className="font-display text-4xl text-maroon mt-2">{s.title}</h2>
-                <p className="font-display text-2xl text-gold mt-2">{s.price}</p>
-                <ul className="mt-6 space-y-3">
+              <div className="p-7 lg:p-8 flex flex-col flex-1">
+                <h2 className="font-display text-2xl text-text-primary">{s.title}</h2>
+                <p className="mt-2 text-[11px] uppercase tracking-[0.22em] text-gold">{s.price}</p>
+                <ul className="mt-5 space-y-2.5 flex-1">
                   {s.features.map((f) => (
-                    <li key={f} className="flex items-start gap-3 text-foreground/80">
-                      <span className="w-5 h-5 rounded-full bg-gradient-gold grid place-items-center shrink-0 mt-0.5">
-                        <Check className="w-3 h-3 text-maroon-deep" strokeWidth={3} />
-                      </span>
+                    <li key={f} className="flex gap-3 text-sm text-text-secondary leading-relaxed">
+                      <span className="text-gold-muted shrink-0 mt-2 inline-block w-3 h-px bg-gold-muted" />
                       <span>{f}</span>
                     </li>
                   ))}
                 </ul>
                 <Link
                   to="/contact"
-                  className="mt-7 inline-flex items-center gap-2 bg-gradient-gold text-maroon-deep px-7 py-3 rounded-full font-semibold shadow-gold gold-shimmer hover:-translate-y-0.5 transition-transform"
+                  className="mt-7 inline-flex items-center justify-center gap-2 border border-gold text-gold px-5 py-3 text-[11px] uppercase tracking-[0.22em] font-semibold hover:bg-gold hover:text-[color:var(--background)] transition-colors self-start"
                 >
-                  Enquire Now →
+                  Enquire
                 </Link>
               </div>
-            </div>
-            {i < SERVICES.length - 1 && (
-              <div className="mt-16 lg:mt-24">
-                <GoldDivider />
-              </div>
-            )}
-          </div>
-        ))}
+            </Reveal>
+          ))}
+        </div>
       </div>
     </div>
   );
