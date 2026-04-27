@@ -49,6 +49,12 @@ export const Route = createRootRoute({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Dhimahi Banquet Hall — Luxury Weddings in Virar West" },
+      { name: "description", content: "Dhimahi Elegance is a luxury banquet hall website for Dhimahi Banquet Hall in Virar West, Maharashtra." },
+      { property: "og:description", content: "Dhimahi Elegance is a luxury banquet hall website for Dhimahi Banquet Hall in Virar West, Maharashtra." },
+      { name: "twitter:description", content: "Dhimahi Elegance is a luxury banquet hall website for Dhimahi Banquet Hall in Virar West, Maharashtra." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2569e27b-92f3-4e26-85bb-d29b0e4f61e9/id-preview-fbf2a872--3625c993-afbe-4505-921c-1ae5cdf6cbdf.lovable.app-1777273556767.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2569e27b-92f3-4e26-85bb-d29b0e4f61e9/id-preview-fbf2a872--3625c993-afbe-4505-921c-1ae5cdf6cbdf.lovable.app-1777273556767.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
